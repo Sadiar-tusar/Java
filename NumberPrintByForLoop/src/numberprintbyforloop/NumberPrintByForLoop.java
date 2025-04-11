@@ -7,10 +7,11 @@ public class NumberPrintByForLoop {
    
     public static void main(String[] args) {
      int tergetValue=100;
-     int count=1;
+     int count;
      
-     for(int i=1, i<=tergetValue, i++){
-     
+     for(count =1; count<=tergetValue; count++){
+         System.out.println(""+count);
+         
      }
     }
     
