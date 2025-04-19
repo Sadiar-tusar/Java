@@ -23,11 +23,18 @@ public class CalculateEvenorOdd {
 //}
 //System.out.println(ch);
 
-int i = 1;
-do{
+//int i = 1;
+//do{
+//i--;
+//} while (i > 2);
+//System.out.println(i);
+
+int i = 10;
+while(i<=10){
 i--;
-} while (i > 2);
-System.out.println(i);
+    System.out.println(i);
+}
+}
 
     }
 
