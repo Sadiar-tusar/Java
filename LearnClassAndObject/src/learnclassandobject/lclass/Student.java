@@ -25,6 +25,11 @@ public class Student {
     public Student(String name) {
         this.name = name;
     }
+
+    public void setMarks(double marks) {
+        this.marks = marks;
+    }
+    
     
     
     
