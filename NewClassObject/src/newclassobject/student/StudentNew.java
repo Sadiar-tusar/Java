@@ -1,46 +1,30 @@
 
-package learnclassandobject.lclass;
+package newclassobject.student;
 
 
-public class Student {
+public class StudentNew {
     
-   private String name;
+     private String name;
    private String email;
    private double marks;
    private int id;
    private int pasword;
    private String address;
    private String instituteName;
-   private long number;
+   private String number;
 
-    public Student() {
+    public StudentNew() {
     }
 
-    public Student(String name, String email, double marks) {
+    public StudentNew(String name, String email, double marks, int id, int pasword, String address, String instituteName, String number) {
         this.name = name;
         this.email = email;
         this.marks = marks;
-    }
-
-    public Student(String name, double marks) {
-        this.name = name;
-        this.marks = marks;
-    }
-
-    public Student(String name, String email, int id) {
-        this.name = name;
-        this.email = email;
         this.id = id;
-    }
-    
-    
-
-    public Student(String name) {
-        this.name = name;
-    }
-
-    public void setMarks(double marks) {
-        this.marks = marks;
+        this.pasword = pasword;
+        this.address = address;
+        this.instituteName = instituteName;
+        this.number = number;
     }
 
     public String getName() {
@@ -57,6 +41,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    public void setMarks(double marks) {
+        this.marks = marks;
     }
 
     public int getId() {
@@ -91,25 +83,19 @@ public class Student {
         this.instituteName = instituteName;
     }
 
-    public long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
-    
-    
-    
-    
-    public String getResult(){
-    
-        if(marks <= 33){
-        return name+" Fail "+marks;
-        
-        }
-        else{
-        return name+" Pass "+marks;
-        }
+
+    @Override
+    public String toString() {
+        return "StudentNew{" + "name=" + name + ", email=" + email + ", marks=" + marks + ", id=" + id + ", pasword=" + pasword + ", address=" + address + ", instituteName=" + instituteName + ", number=" + number + '}';
     }
+
+   
+   
 }
