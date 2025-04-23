@@ -90,11 +90,29 @@ public class StudentNew {
     public void setNumber(String number) {
         this.number = number;
     }
+    
+    
 
     @Override
     public String toString() {
         return "StudentNew{" + "name=" + name + ", email=" + email + ", marks=" + marks + ", id=" + id + ", pasword=" + pasword + ", address=" + address + ", instituteName=" + instituteName + ", number=" + number + '}';
     }
+    
+    public String getResult(){
+    if(marks >=33){
+    return name+" Pass "+marks;
+    }
+    else{
+    return name+" Fail "+marks;
+    }
+    }
+
+    public StudentNew(String name, double marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+    
+    
 
    
    
