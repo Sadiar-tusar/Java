@@ -20,6 +20,8 @@ public class NewClassObject {
         s.setNumber("01722652595");
         
         System.out.println(s);
+        
+        
     }
     
 }
