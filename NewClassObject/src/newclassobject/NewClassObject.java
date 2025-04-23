@@ -1,10 +1,29 @@
 package newclassobject;
 
+import java.util.Arrays;
 import newclassobject.student.StudentNew;
 
 public class NewClassObject {
 
     public static void main(String[] args) {
+        
+//        Array Of Object start--
+StudentNew[] st=new StudentNew[5];
+
+StudentNew s1=new StudentNew("Rana", 60);
+StudentNew s2=new StudentNew("istiaq", 50);
+StudentNew s3=new StudentNew("Halima", 40);
+StudentNew s4=new StudentNew("Rohim", 65);
+
+st[0]=s1;
+st[1]=s2;
+st[2]=s3;
+st[3]=s4;
+
+
+        System.out.println(Arrays.toString(st));
+//        Array of Object end---
+        
 //        StudentNew s=new StudentNew();
 
 //        s.setName("Atiq");
@@ -24,17 +43,17 @@ public class NewClassObject {
         
 
 //public static void ar jonno.
-StudentNew lowerMethod=new StudentNew(); 
-
-lowerMethod.setName("Eiasin");
-lowerMethod.setId(1236564);
-
-        printStudentDetails(lowerMethod);
+//StudentNew lowerMethod=new StudentNew(); 
+//
+//lowerMethod.setName("Eiasin");
+//lowerMethod.setId(1236564);
+//
+//        printStudentDetails(lowerMethod);
     }
 
-    public static void printStudentDetails(StudentNew sn) {
-
-        System.out.println("Name: " + sn.getName() + "\n" + "Id: " + sn.getId());
-    }
+//    public static void printStudentDetails(StudentNew sn) {
+//
+//        System.out.println("Name: " + sn.getName() + "\n" + "Id: " + sn.getId());
+//    }
 
 }
