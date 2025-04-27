@@ -2,6 +2,7 @@
 package inheritencesubs.apple;
 
 import inheritencesubs.frut.Fruits;
+import javax.swing.InputMap;
 
 
 public class Apple extends Fruits{
@@ -64,6 +65,25 @@ public class Apple extends Fruits{
     @Override
     public String toString() {
         return "Apple{" + "rounded=" + rounded + ", flat=" + flat + ", bottom=" + bottom + ", skhfd=" + skhfd + '}';
+    }
+    
+    
+    public String getPrime(){
+    int input;
+    int count=0;
+    
+    for(int i=1; i<=input; i++){
+    if(input % i==0){
+    count++;
+    }
+    }
+    
+    if(count==2){
+    return input+" It is Prime Number";
+    }
+    else{
+    return input+"It is Not Prime Number";
+    }
     }
 
   
