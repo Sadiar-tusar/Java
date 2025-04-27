@@ -3,6 +3,7 @@ package inheritencesubs;
 
 import inheritencesubs.apple.Apple;
 import inheritencesubs.apple.Mango;
+import java.util.Scanner;
 
 
 public class InheritenceSubS {
@@ -16,10 +17,14 @@ public class InheritenceSubS {
 //        a.setColor("Red");
 //        
 //        System.out.println(a.getColor());
+
+        Scanner s=new Scanner(System.in);
         
+        System.out.println("Enter Number");
+        int userInput=s.nextInt();
         
        
-       a.setSkhfd(5);
+       a.setSkhfd(userInput);
         System.out.println(a.getPrime());
         
         
