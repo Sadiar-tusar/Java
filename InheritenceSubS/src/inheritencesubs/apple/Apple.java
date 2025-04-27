@@ -11,6 +11,8 @@ public class Apple extends Fruits{
     private String flat;
     private String bottom ;
     private  int skhfd;
+    
+    
 
     public Apple() {
     }
@@ -67,27 +69,28 @@ public class Apple extends Fruits{
         return "Apple{" + "rounded=" + rounded + ", flat=" + flat + ", bottom=" + bottom + ", skhfd=" + skhfd + '}';
     }
     
+   
+    
     
     public String getPrime(){
-    int input;
+    
     int count=0;
     
-    for(int i=1; i<=input; i++){
-    if(input % i==0){
+    for(int i=1; i<=skhfd; i++){
+    if(skhfd % i==0){
     count++;
     }
     }
     
     if(count==2){
-    return input+" It is Prime Number";
+    return skhfd+" It is Prime Number";
     }
     else{
-    return input+"It is Not Prime Number";
+    return skhfd+"It is Not Prime Number";
     }
     }
-
-  
     
+   
     
 
    

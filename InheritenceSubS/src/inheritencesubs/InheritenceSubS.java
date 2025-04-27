@@ -12,13 +12,14 @@ public class InheritenceSubS {
        
         Apple a=new Apple();
         Mango m=new Mango();
+//        
+//        a.setColor("Red");
+//        
+//        System.out.println(a.getColor());
         
-        a.setColor("Red");
         
-        System.out.println(a.getColor());
-        
-        
-        Apple input=new Apple();
+       
+       a.setSkhfd(5);
         System.out.println(a.getPrime());
         
         
