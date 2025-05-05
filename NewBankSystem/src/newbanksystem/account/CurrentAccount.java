@@ -30,11 +30,12 @@ public class CurrentAccount extends Account{
     @Override
     public void withdraw(double number) {
       
-//        double balance=getBalance();
+        double balance=super.getBalance();
         
        if(number>0 && balance+overDraftLimit >=number){
         
             balance -=number;
+            super.setBalance(balance);
             
             System.out.println(number+"Withdraw Successfull(With Over Draft if Nedded).");
         }

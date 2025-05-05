@@ -7,7 +7,7 @@ import java.awt.Color;
 public class Account {
     
     private long accountNumber;
-    double balance;
+   private double balance;
 
     public Account() {
     }

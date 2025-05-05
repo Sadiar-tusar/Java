@@ -1,6 +1,8 @@
 
 package multidimensionarray;
 
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -21,10 +23,10 @@ public class MultidimensionArray {
               System.out.println("Enter Number"+(index+1));
             int userInput=s.nextInt();
             numbers[index]=userInput;
-            
+             
           }
             
-        
+      
         
     }
     
