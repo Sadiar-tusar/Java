@@ -11,8 +11,8 @@ public class ExamVehicle {
        
         Truck t=new Truck();
         
-       t.setWeight(30000);
-       t.setRegularPrice(45000);
+       t.setWeight(3000);
+       t.setRegularPrice(100);
         System.out.println(t.getSalePrice());
     }
     
