@@ -13,11 +13,14 @@ public class NewReadAndWrite {
 
     
     public static void main(String[] args) {
-       
+      
+        
         File file=new File("C:\\Users\\Admin\\Desktop\\document.txt");
         
         try {
+            
             PrintWriter pw=new PrintWriter(file);
+            
             pw.append("I am a Student of Java Programmer sjgdhkjhsdgkd \n ");
             pw.append("I am a Student of Java Programmer sjgdhkjhsdgkd \n kdfjfdhdifjhkjf.kjgfbhljf");
             pw.print("jhsghdghik");
