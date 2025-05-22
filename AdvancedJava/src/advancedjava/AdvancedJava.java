@@ -29,7 +29,7 @@ public class AdvancedJava {
         
         
 
-        deleteEmp(2);
+        deleteEmp(5);
         System.out.println("After Delete");
         showAllEmp();
         
