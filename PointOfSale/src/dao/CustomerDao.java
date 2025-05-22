@@ -125,6 +125,38 @@ public class CustomerDao {
         }
         
     }
+     
+     public Object[] findCustomerById(int id){
+     
+         String sql="select * from customer where id=?";
+         
+        try {
+            ps=util.getCon().prepareStatement(sql);
+            
+            ps.setInt(1, id);
+            
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+            
+                return new Object[]{
+                rs.getString("name"),
+                rs.getString("email"),
+                rs.getString("cell"),
+                rs.getString("address"),
+                };
+            }
+            
+            rs.close();
+            ps.close();
+            util.getCon().close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return null;
+     }
+
 
    
 }

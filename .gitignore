@@ -237,6 +237,12 @@
 /NewReadAndWrite/dist/
 /AdvancedJava/nbproject/private/
 /AdvancedJava/build/
+<<<<<<< HEAD
 /Crud/nbproject/private/
 /NewCrud/nbproject/private/
 /NewCrud/build/
+=======
+/ThreatTest/nbproject/private/
+/ThreatTest/build/
+/ThreatTest/dist/
+>>>>>>> 4d898c912b4f48f3c53d622531e984bdd85e55f2
