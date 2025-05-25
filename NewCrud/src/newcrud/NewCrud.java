@@ -69,7 +69,7 @@ public class NewCrud {
              String name = rs.getString("name");
                 String email = rs.getString("email");
                 
-                System.out.println("ID: " + id + " Name: " + name + " Email: "
+                System.out.println("ID: " + id+"\n" + " Name: " + name+"\n" + " Email: "
                         + email);
             }
             
