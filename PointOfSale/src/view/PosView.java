@@ -6,7 +6,10 @@ package view;
 
 import dao.CategoryDao;
 import dao.CustomerDao;
+import dao.PurchaseDao;
 import dao.SupplierDao;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import util.DatabaseUtil;
@@ -21,6 +24,7 @@ public class PosView extends javax.swing.JFrame {
     CustomerDao customerdao=new CustomerDao();
     SupplierDao supplierDao=new SupplierDao();
     CategoryDao categoryDao=new CategoryDao();
+    PurchaseDao purcheseDao=new PurchaseDao();
 
     /**
      * Creates new form PosView
@@ -30,6 +34,23 @@ public class PosView extends javax.swing.JFrame {
         customerdao.showAllCustomer(tableCustomer);
         supplierDao.showAllSupplier(tblSupplier);
         categoryDao.showAllCategory(tblCategory);
+        purcheseDao.loadCategory(comboPurcheseCategory);
+        
+        comboPurcheseCategory.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+               String categoryName=comboPurcheseCategory.getSelectedItem().toString();
+               
+               purcheseDao.loadProduct(comboPurcheseProductName, categoryName);
+            }
+        });
+        
+//        comboPurcheseProductName.addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//            }
+//        });
         
     }
     
@@ -114,9 +135,9 @@ public class PosView extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPurcheseCategory = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboPurcheseProductName = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
@@ -477,22 +498,25 @@ public class PosView extends javax.swing.JFrame {
         jPanel6.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Category");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
+        comboPurcheseCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboPurcheseCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(comboPurcheseCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Product Name");
         jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 130, 30));
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 200, 30));
+        comboPurcheseProductName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboPurcheseProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(comboPurcheseProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 200, 30));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Supplier Name");
         jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 120, 30));
 
@@ -501,16 +525,19 @@ public class PosView extends javax.swing.JFrame {
         jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, 30));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Unit Price");
         jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 70, 30));
         jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, 30));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Quantity");
         jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 70, 30));
         jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 130, 30));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Total Price");
         jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 70, 30));
         jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 130, 30));
@@ -910,6 +937,7 @@ public class PosView extends javax.swing.JFrame {
     private void btnPurchesesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPurchesesMouseClicked
         // TODO add your handling code here:
         tabMain.setSelectedIndex(3);
+//        purcheseDao.loadCategory(comboPurcheseCategory);
     }//GEN-LAST:event_btnPurchesesMouseClicked
 
     private void btnSuppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuppliersMouseClicked
@@ -1200,10 +1228,10 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JButton btnSupplierReset;
     private javax.swing.JButton btnSupplierSave;
     private javax.swing.JButton btnSuppliers;
+    private javax.swing.JComboBox<String> comboPurcheseCategory;
+    private javax.swing.JComboBox<String> comboPurcheseProductName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
