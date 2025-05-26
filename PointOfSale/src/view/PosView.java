@@ -7,6 +7,7 @@ package view;
 import dao.CategoryDao;
 import dao.CustomerDao;
 import dao.PurchaseDao;
+import dao.StockDao;
 import dao.SupplierDao;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -25,6 +26,7 @@ public class PosView extends javax.swing.JFrame {
     SupplierDao supplierDao=new SupplierDao();
     CategoryDao categoryDao=new CategoryDao();
     PurchaseDao purcheseDao=new PurchaseDao();
+    StockDao stockDao=new StockDao();
 
     /**
      * Creates new form PosView
@@ -35,6 +37,8 @@ public class PosView extends javax.swing.JFrame {
         supplierDao.showAllSupplier(tblSupplier);
         categoryDao.showAllCategory(tblCategory);
         purcheseDao.loadCategory(comboPurcheseCategory);
+       
+       
         
         comboPurcheseCategory.addItemListener(new ItemListener() {
             @Override

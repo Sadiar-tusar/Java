@@ -22,7 +22,7 @@ public class StockDao {
     public List<Stock> getProductByCategory(String category){
     
         List<Stock> stockList=new ArrayList<>();
-    sql="select * from stoct where category=?";
+    sql="select * from stock where category=?";
     
          try {
              ps=util.getCon().prepareStatement(sql);
