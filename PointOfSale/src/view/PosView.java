@@ -182,7 +182,12 @@ public class PosView extends javax.swing.JFrame {
         tblSupplier = new javax.swing.JTable();
         tabStock = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         tabCustomer = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -703,24 +708,40 @@ public class PosView extends javax.swing.JFrame {
 
         tabMain.addTab("tab5", tabsuppliers);
 
-        jLabel7.setText("8");
+        jPanel8.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(568, Short.MAX_VALUE))
+        jPanel17.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("Stock");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(374, Short.MAX_VALUE))
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
         );
+
+        jPanel8.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Id");
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 80, 30));
+        jPanel8.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 92, 160, 30));
+
+        jLabel33.setText("jLabel33");
+        jPanel8.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 60, 30));
+
+        jTextField2.setText("jTextField2");
+        jPanel8.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 90, 210, 30));
 
         tabStock.addTab("tab1", jPanel8);
 
@@ -1383,6 +1404,8 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1396,6 +1419,7 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1410,6 +1434,8 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTabbedPane tabCategory;
     private javax.swing.JTabbedPane tabCustomer;
     private javax.swing.JTabbedPane tabHome;
