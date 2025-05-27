@@ -6,6 +6,7 @@ package view;
 
 import dao.CategoryDao;
 import dao.CustomerDao;
+import dao.ProductDao;
 import dao.PurchaseDao;
 import dao.StockDao;
 import dao.SupplierDao;
@@ -27,6 +28,7 @@ public class PosView extends javax.swing.JFrame {
     CategoryDao categoryDao=new CategoryDao();
     PurchaseDao purcheseDao=new PurchaseDao();
     StockDao stockDao=new StockDao();
+    ProductDao productDao=new ProductDao();
 
     /**
      * Creates new form PosView
@@ -36,16 +38,18 @@ public class PosView extends javax.swing.JFrame {
         customerdao.showAllCustomer(tableCustomer);
         supplierDao.showAllSupplier(tblSupplier);
         categoryDao.showAllCategory(tblCategory);
-        purcheseDao.loadCategory(comboPurcheseCategory);
+        purcheseDao.loadCategory(comboPurchaseCategory);
+        supplierDao.showAllSupplierToPurchaseComboBox(comboPurchaseSupplierName);
+        productDao.losdCategoryByProductCombo(comboProductCategory);
        
        
         
-        comboPurcheseCategory.addItemListener(new ItemListener() {
+        comboPurchaseCategory.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-               String categoryName=comboPurcheseCategory.getSelectedItem().toString();
+               String categoryName=comboPurchaseCategory.getSelectedItem().toString();
                
-               purcheseDao.loadProduct(comboPurcheseProductName, categoryName);
+               purcheseDao.loadProduct(comboPurchaseProductName, categoryName);
             }
         });
         
@@ -114,9 +118,11 @@ public class PosView extends javax.swing.JFrame {
         btnStock = new javax.swing.JButton();
         btnCustomer = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
+        btnProduct = new javax.swing.JButton();
         tabMain = new javax.swing.JTabbedPane();
         tabHome = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         tabCategory = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -139,19 +145,19 @@ public class PosView extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        comboPurcheseCategory = new javax.swing.JComboBox<>();
+        comboPurchaseCategory = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        comboPurcheseProductName = new javax.swing.JComboBox<>();
+        comboPurchaseProductName = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboPurchaseSupplierName = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPurchaseUnitPrice = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPurchaseQuantity = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtPurchaseTotalPrice = new javax.swing.JTextField();
+        btnPurchaseConfirm = new javax.swing.JButton();
+        btnPurchaseReset = new javax.swing.JButton();
         tabsuppliers = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -199,9 +205,22 @@ public class PosView extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtCustomerCell = new javax.swing.JTextField();
         btnCustomerSearch = new javax.swing.JButton();
-        tabReport = new javax.swing.JTabbedPane();
-        jPanel10 = new javax.swing.JPanel();
+        tabReport = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        tabProduct = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        txtProductId = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        comboProductCategory = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
+        txtProductProductName = new javax.swing.JTextField();
+        btnProductSave = new javax.swing.JButton();
+        btnProductReset = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblProduct = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
@@ -241,11 +260,6 @@ public class PosView extends javax.swing.JFrame {
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHomeMouseClicked(evt);
-            }
-        });
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
             }
         });
 
@@ -297,11 +311,19 @@ public class PosView extends javax.swing.JFrame {
             }
         });
 
-        btnReport.setBackground(new java.awt.Color(255, 204, 255));
+        btnReport.setBackground(new java.awt.Color(204, 0, 0));
         btnReport.setText("Report");
         btnReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReportMouseClicked(evt);
+            }
+        });
+
+        btnProduct.setBackground(new java.awt.Color(0, 102, 204));
+        btnProduct.setText("Product");
+        btnProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProductMouseClicked(evt);
             }
         });
 
@@ -319,6 +341,7 @@ public class PosView extends javax.swing.JFrame {
                     .addComponent(btnSuppliers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(btnStock, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -341,7 +364,9 @@ public class PosView extends javax.swing.JFrame {
                 .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 620));
@@ -354,11 +379,11 @@ public class PosView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
         );
 
         tabHome.addTab("tab1", jPanel3);
@@ -506,53 +531,64 @@ public class PosView extends javax.swing.JFrame {
         jLabel22.setText("Category");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
 
-        comboPurcheseCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboPurcheseCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(comboPurcheseCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
+        comboPurchaseCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboPurchaseCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(comboPurchaseCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Product Name");
         jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 130, 30));
 
-        comboPurcheseProductName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboPurcheseProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(comboPurcheseProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 200, 30));
+        comboPurchaseProductName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboPurchaseProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(comboPurchaseProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 200, 30));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Supplier Name");
         jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 120, 30));
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, 30));
+        comboPurchaseSupplierName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        comboPurchaseSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(comboPurchaseSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, 30));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Unit Price");
         jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 70, 30));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, 30));
+        jPanel6.add(txtPurchaseUnitPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, 30));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Quantity");
         jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 70, 30));
-        jPanel6.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 130, 30));
+
+        txtPurchaseQuantity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPurchaseQuantityFocusLost(evt);
+            }
+        });
+        jPanel6.add(txtPurchaseQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 130, 30));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Total Price");
         jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 70, 30));
-        jPanel6.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 130, 30));
+        jPanel6.add(txtPurchaseTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 130, 30));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Confirm");
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        btnPurchaseConfirm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPurchaseConfirm.setText("Confirm");
+        btnPurchaseConfirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPurchaseConfirmMouseClicked(evt);
+            }
+        });
+        jPanel6.add(btnPurchaseConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("Reset");
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        btnPurchaseReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPurchaseReset.setText("Reset");
+        jPanel6.add(btnPurchaseReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
 
         tabPurcheses.addTab("tab1", jPanel6);
 
@@ -894,28 +930,90 @@ public class PosView extends javax.swing.JFrame {
 
         tabMain.addTab("tab7", tabCustomer);
 
-        jLabel9.setText("sadiar");
+        jLabel9.setText("14545");
+
+        javax.swing.GroupLayout tabReportLayout = new javax.swing.GroupLayout(tabReport);
+        tabReport.setLayout(tabReportLayout);
+        tabReportLayout.setHorizontalGroup(
+            tabReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabReportLayout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jLabel9)
+                .addContainerGap(649, Short.MAX_VALUE))
+        );
+        tabReportLayout.setVerticalGroup(
+            tabReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabReportLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel9)
+                .addContainerGap(593, Short.MAX_VALUE))
+        );
+
+        tabMain.addTab("tab8", tabReport);
+
+        tabProduct.setBackground(new java.awt.Color(204, 204, 255));
+        tabProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel10.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel28.setBackground(new java.awt.Color(255, 204, 255));
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Product");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(355, Short.MAX_VALUE))
+            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(475, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(0, 17, Short.MAX_VALUE)
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        tabReport.addTab("tab1", jPanel10);
+        tabProduct.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        tabMain.addTab("tab8", tabReport);
+        jLabel29.setText("Id");
+        tabProduct.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 60, 30));
+        tabProduct.add(txtProductId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 82, 190, 30));
+
+        jLabel30.setText("Category");
+        tabProduct.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 80, 30));
+
+        comboProductCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tabProduct.add(comboProductCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 220, 30));
+
+        jLabel31.setText("Product Name");
+        tabProduct.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 30));
+        tabProduct.add(txtProductProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 160, 30));
+
+        btnProductSave.setText("Save");
+        tabProduct.add(btnProductSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 163, 80, 30));
+
+        btnProductReset.setText("Reset");
+        tabProduct.add(btnProductReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 163, 90, 30));
+
+        tblProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tblProduct);
+
+        tabProduct.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 760, 320));
+
+        jTabbedPane3.addTab("tab1", tabProduct);
+
+        tabMain.addTab("tab9", jTabbedPane3);
 
         getContentPane().add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 800, 700));
 
@@ -961,40 +1059,48 @@ public class PosView extends javax.swing.JFrame {
 
     private void btnReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportMouseClicked
         // TODO add your handling code here:
-        tabMain.setSelectedIndex(7);
+         tabMain.setSelectedIndex(7);
     }//GEN-LAST:event_btnReportMouseClicked
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeActionPerformed
+        tabMain.setSelectedIndex(8);
+        
+    }//GEN-LAST:event_btnProductMouseClicked
 
-    private void btnCustomerSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSaveMouseClicked
+    private void btnCustomerSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSearchMouseClicked
         // TODO add your handling code here:
-        
-        String name=txtCustomerName.getText().trim();
-        String email=txtCustomerEmail.getText().trim();
-        String cell=txtCustomerCell.getText().trim();
-        String address=txtCustomerAddress.getText().trim();
-        
-        customerdao.saveCustomer(name, email, cell, address);
-        resetCustomer();
-        customerdao.showAllCustomer(tableCustomer);
-      
-    }//GEN-LAST:event_btnCustomerSaveMouseClicked
+        int id=Integer.parseInt(txtCustomerId.getText());
+        Object[] customers=customerdao.findCustomerById(id);
+
+        if(customers==null){
+
+            JOptionPane.showMessageDialog(null, "Customer Not Found");
+            txtCustomerId.setText("");
+        }
+        else{
+
+            txtCustomerName.setText(customers[0].toString());
+            txtCustomerEmail.setText(customers[1].toString());
+            txtCustomerCell.setText(customers[2].toString());
+            txtCustomerAddress.setText(customers[3].toString());
+        }
+
+    }//GEN-LAST:event_btnCustomerSearchMouseClicked
 
     private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
         // TODO add your handling code here:
-        
+
         btnCustomerSave.setVisible(false);
-        
+
         int rowIndex=tableCustomer.getSelectedRow();
-        
+
         String id=tableCustomer.getModel().getValueAt(rowIndex, 0).toString();
         String name=tableCustomer.getModel().getValueAt(rowIndex, 1).toString();
         String email=tableCustomer.getModel().getValueAt(rowIndex, 2).toString();
         String cell=tableCustomer.getModel().getValueAt(rowIndex, 3).toString();
         String address=tableCustomer.getModel().getValueAt(rowIndex, 4).toString();
-        
+
         txtCustomerId.setText(id);
         txtCustomerName.setText(name);
         txtCustomerEmail.setText(email);
@@ -1002,16 +1108,11 @@ public class PosView extends javax.swing.JFrame {
         txtCustomerAddress.setText(address);
     }//GEN-LAST:event_tableCustomerMouseClicked
 
-    private void btnCustomerResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerResetMouseClicked
-        // TODO add your handling code here:
-        resetCustomer();
-    }//GEN-LAST:event_btnCustomerResetMouseClicked
-
     private void btnCustomerDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerDeleteMouseClicked
         // TODO add your handling code here:
-        
+
         int id=Integer.parseInt(txtCustomerId.getText());
-        
+
         customerdao.deleteCustomer(id, tableCustomer);
         resetCustomer();
         btnCustomerSave.setVisible(true);
@@ -1019,66 +1120,50 @@ public class PosView extends javax.swing.JFrame {
 
     private void btnCustomerEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerEditMouseClicked
         // TODO add your handling code here:
-        
-         String name=txtCustomerName.getText().trim();
+
+        String name=txtCustomerName.getText().trim();
         String email=txtCustomerEmail.getText().trim();
         String cell=txtCustomerCell.getText().trim();
         String address=txtCustomerAddress.getText().trim();
         int id=Integer.parseInt(txtCustomerId.getText().trim());
-        
+
         customerdao.editCustomer(id,name, email, cell, address, tableCustomer);
         resetCustomer();
         customerdao.showAllCustomer(tableCustomer);
     }//GEN-LAST:event_btnCustomerEditMouseClicked
 
-    private void btnCustomerSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSearchMouseClicked
+    private void btnCustomerResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerResetMouseClicked
         // TODO add your handling code here:
-        int id=Integer.parseInt(txtCustomerId.getText());
-        Object[] customers=customerdao.findCustomerById(id);
-        
-        if(customers==null){
-        
-            JOptionPane.showMessageDialog(null, "Customer Not Found");
-            txtCustomerId.setText("");
-        }
-        else{
-        
-             
-        txtCustomerName.setText(customers[0].toString());
-        txtCustomerEmail.setText(customers[1].toString());
-        txtCustomerCell.setText(customers[2].toString());
-        txtCustomerAddress.setText(customers[3].toString()); 
-        }
-      
-    }//GEN-LAST:event_btnCustomerSearchMouseClicked
+        resetCustomer();
+    }//GEN-LAST:event_btnCustomerResetMouseClicked
 
-    private void btnSupplierSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierSaveMouseClicked
+    private void btnCustomerSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSaveMouseClicked
         // TODO add your handling code here:
-        
-        String name=txtSupplierName.getText().trim().toString();
-        String email=txtSupplierEmail.getText().trim().toString();
-        String cell=txtSupplierCell.getText().trim().toString();
-        String address=txtSupplierAddress.getText().trim().toString();
-        String contactPerson=txtSupplierContact.getText().trim().toString();
-        
-        supplierDao.saveSupplier(name, email, cell, address, contactPerson);
-        resetSupplier();
-        supplierDao.showAllSupplier(tblSupplier);
-    }//GEN-LAST:event_btnSupplierSaveMouseClicked
+
+        String name=txtCustomerName.getText().trim();
+        String email=txtCustomerEmail.getText().trim();
+        String cell=txtCustomerCell.getText().trim();
+        String address=txtCustomerAddress.getText().trim();
+
+        customerdao.saveCustomer(name, email, cell, address);
+        resetCustomer();
+        customerdao.showAllCustomer(tableCustomer);
+
+    }//GEN-LAST:event_btnCustomerSaveMouseClicked
 
     private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
         // TODO add your handling code here:
-        
+
         btnSupplierSave.setVisible(false);
         int rowIndex=tblSupplier.getSelectedRow();
-        
-         String id=tblSupplier.getModel().getValueAt(rowIndex, 0).toString();
+
+        String id=tblSupplier.getModel().getValueAt(rowIndex, 0).toString();
         String name=tblSupplier.getModel().getValueAt(rowIndex, 1).toString();
         String email=tblSupplier.getModel().getValueAt(rowIndex, 2).toString();
         String cell=tblSupplier.getModel().getValueAt(rowIndex, 3).toString();
         String address=tblSupplier.getModel().getValueAt(rowIndex, 4).toString();
         String contactPerson=tblSupplier.getModel().getValueAt(rowIndex, 5).toString();
-        
+
         txtSupplierId.setText(id);
         txtSupplierName.setText(name);
         txtSupplierEmail.setText(email);
@@ -1089,74 +1174,96 @@ public class PosView extends javax.swing.JFrame {
 
     private void btnSupplierResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierResetMouseClicked
         // TODO add your handling code here:
-        
+
         resetSupplier();
     }//GEN-LAST:event_btnSupplierResetMouseClicked
 
-    private void btnSupplierDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierDeleteMouseClicked
-        // TODO add your handling code here:
-        
-        int id=Integer.parseInt(txtSupplierId.getText().trim().toString());
-        supplierDao.deleteSupplier(id, tblSupplier);
-        resetSupplier();
-        btnSupplierSave.setVisible(true);
-        
-    }//GEN-LAST:event_btnSupplierDeleteMouseClicked
-
     private void btnSupplierEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierEditMouseClicked
         // TODO add your handling code here:
-        
-         String name=txtSupplierName.getText().trim().toString();
+
+        String name=txtSupplierName.getText().trim().toString();
         String email=txtSupplierEmail.getText().trim().toString();
         String cell=txtSupplierCell.getText().trim().toString();
         String address=txtSupplierAddress.getText().trim().toString();
         String contactPerson=txtSupplierContact.getText().trim().toString();
         int id=Integer.parseInt(txtSupplierId.getText());
-        
+
         supplierDao.editSupplier(id, name, email, cell, address, contactPerson, tblSupplier);
         resetSupplier();
     }//GEN-LAST:event_btnSupplierEditMouseClicked
 
-    private void btnCategorySaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategorySaveMouseClicked
+    private void btnSupplierSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierSaveMouseClicked
         // TODO add your handling code here:
-        String name=txtCategoryName.getText().trim().toString();
-        
-        categoryDao.saveCategory(name, tblCategory);
-        resetCategory();
-        categoryDao.showAllCategory(tblCategory);
-        
-        
-    }//GEN-LAST:event_btnCategorySaveMouseClicked
+
+        String name=txtSupplierName.getText().trim().toString();
+        String email=txtSupplierEmail.getText().trim().toString();
+        String cell=txtSupplierCell.getText().trim().toString();
+        String address=txtSupplierAddress.getText().trim().toString();
+        String contactPerson=txtSupplierContact.getText().trim().toString();
+
+        supplierDao.saveSupplier(name, email, cell, address, contactPerson);
+        resetSupplier();
+        supplierDao.showAllSupplier(tblSupplier);
+    }//GEN-LAST:event_btnSupplierSaveMouseClicked
+
+    private void btnSupplierDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierDeleteMouseClicked
+        // TODO add your handling code here:
+
+        int id=Integer.parseInt(txtSupplierId.getText().trim().toString());
+        supplierDao.deleteSupplier(id, tblSupplier);
+        resetSupplier();
+        btnSupplierSave.setVisible(true);
+
+    }//GEN-LAST:event_btnSupplierDeleteMouseClicked
+
+    private void btnPurchaseConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPurchaseConfirmMouseClicked
+        // TODO add your handling code here:
+
+        String category= comboPurchaseCategory.getSelectedItem().toString();
+        String productName= comboPurchaseProductName.getSelectedItem().toString();
+        String supplierName= comboPurchaseSupplierName.getSelectedItem().toString();
+        float unitPrice=Float.parseFloat(txtPurchaseUnitPrice.getText().trim());
+        float quantity=Float.parseFloat(txtPurchaseQuantity.getText().trim());
+        float totalPrice=Float.parseFloat(txtPurchaseTotalPrice.getText().trim());
+
+        purcheseDao.savePurchase(productName, unitPrice, quantity, totalPrice, category, supplierName);
+    }//GEN-LAST:event_btnPurchaseConfirmMouseClicked
+
+    private void txtPurchaseQuantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPurchaseQuantityFocusLost
+        // TODO add your handling code here:
+
+        float unitPrice=Float.parseFloat(txtPurchaseUnitPrice.getText().trim());
+        float quantity=Float.parseFloat(txtPurchaseQuantity.getText().trim());
+
+        float totalPrice=unitPrice * quantity;
+
+        txtPurchaseTotalPrice.setText(String.valueOf(totalPrice));
+    }//GEN-LAST:event_txtPurchaseQuantityFocusLost
 
     private void tblCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoryMouseClicked
         // TODO add your handling code here:
-        
-          btnCategorySave.setVisible(false);
+
+        btnCategorySave.setVisible(false);
         int rowIndex=tblCategory.getSelectedRow();
-        
-         String id=tblCategory.getModel().getValueAt(rowIndex, 0).toString();
+
+        String id=tblCategory.getModel().getValueAt(rowIndex, 0).toString();
         String name=tblCategory.getModel().getValueAt(rowIndex, 1).toString();
-       
-        
+
         txtCategoryId.setText(id);
         txtCategoryName.setText(name);
-        
-        
-     
-       
-                                
+
     }//GEN-LAST:event_tblCategoryMouseClicked
 
     private void btnCategoryResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoryResetMouseClicked
         // TODO add your handling code here:
-        
+
         resetCategory();
     }//GEN-LAST:event_btnCategoryResetMouseClicked
 
     private void btnCategoryDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoryDeleteMouseClicked
         // TODO add your handling code here:
-        
-         int id=Integer.parseInt(txtCategoryId.getText().trim().toString());
+
+        int id=Integer.parseInt(txtCategoryId.getText().trim().toString());
         categoryDao.deleteCategory(id, tblCategory);
         resetCategory();
         btnSupplierSave.setVisible(true);
@@ -1164,16 +1271,26 @@ public class PosView extends javax.swing.JFrame {
 
     private void btnCategoryEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoryEditMouseClicked
         // TODO add your handling code here:
-        
-          String name=txtCategoryName.getText().trim().toString();
-        
+
+        String name=txtCategoryName.getText().trim().toString();
+
         int id=Integer.parseInt(txtCategoryId.getText());
-        
+
         categoryDao.editCategory(id, name, tblCategory);
         resetCategory();
         categoryDao.showAllCategory(tblCategory);
-        
+
     }//GEN-LAST:event_btnCategoryEditMouseClicked
+
+    private void btnCategorySaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategorySaveMouseClicked
+        // TODO add your handling code here:
+        String name=txtCategoryName.getText().trim().toString();
+
+        categoryDao.saveCategory(name, tblCategory);
+        resetCategory();
+        categoryDao.showAllCategory(tblCategory);
+
+    }//GEN-LAST:event_btnCategorySaveMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1223,6 +1340,11 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JButton btnCustomerSave;
     private javax.swing.JButton btnCustomerSearch;
     private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnProduct;
+    private javax.swing.JButton btnProductReset;
+    private javax.swing.JButton btnProductSave;
+    private javax.swing.JButton btnPurchaseConfirm;
+    private javax.swing.JButton btnPurchaseReset;
     private javax.swing.JButton btnPurcheses;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSales;
@@ -1232,11 +1354,10 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JButton btnSupplierReset;
     private javax.swing.JButton btnSupplierSave;
     private javax.swing.JButton btnSuppliers;
-    private javax.swing.JComboBox<String> comboPurcheseCategory;
-    private javax.swing.JComboBox<String> comboPurcheseProductName;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> comboProductCategory;
+    private javax.swing.JComboBox<String> comboPurchaseCategory;
+    private javax.swing.JComboBox<String> comboPurchaseProductName;
+    private javax.swing.JComboBox<String> comboPurchaseSupplierName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1257,7 +1378,11 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1282,20 +1407,22 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane tabCategory;
     private javax.swing.JTabbedPane tabCustomer;
     private javax.swing.JTabbedPane tabHome;
     private javax.swing.JTabbedPane tabMain;
+    private javax.swing.JPanel tabProduct;
     private javax.swing.JTabbedPane tabPurcheses;
-    private javax.swing.JTabbedPane tabReport;
+    private javax.swing.JPanel tabReport;
     private javax.swing.JTabbedPane tabStock;
     private javax.swing.JTable tableCustomer;
     private javax.swing.JTabbedPane tabsales;
     private javax.swing.JTabbedPane tabsuppliers;
     private javax.swing.JTable tblCategory;
+    private javax.swing.JTable tblProduct;
     private javax.swing.JTable tblSupplier;
     private javax.swing.JTextField txtCategoryId;
     private javax.swing.JTextField txtCategoryName;
@@ -1304,6 +1431,11 @@ public class PosView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerEmail;
     private javax.swing.JTextField txtCustomerId;
     private javax.swing.JTextField txtCustomerName;
+    private javax.swing.JTextField txtProductId;
+    private javax.swing.JTextField txtProductProductName;
+    private javax.swing.JTextField txtPurchaseQuantity;
+    private javax.swing.JTextField txtPurchaseTotalPrice;
+    private javax.swing.JTextField txtPurchaseUnitPrice;
     private javax.swing.JTextField txtSupplierAddress;
     private javax.swing.JTextField txtSupplierCell;
     private javax.swing.JTextField txtSupplierContact;
