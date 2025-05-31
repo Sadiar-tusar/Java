@@ -96,7 +96,7 @@ public class ReportDao {
             document.add(new Paragraph("\n"));
 
             //Creat Pdf Table
-            PdfPTable table = new PdfPTable(7);
+            PdfPTable table = new PdfPTable(6);
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
             table.setSpacingAfter(10f);
