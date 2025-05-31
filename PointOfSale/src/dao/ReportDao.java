@@ -96,13 +96,13 @@ public class ReportDao {
             document.add(new Paragraph("\n"));
 
             //Creat Pdf Table
-            PdfPTable table = new PdfPTable(6);
+            PdfPTable table = new PdfPTable(7);
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
             table.setSpacingAfter(10f);
 
             //set table colum widths
-            float[] columWidths = {2.5f, 2.5f, 2.0f, 1.5f, 2f, 2f};
+            float[] columWidths = {2.5f, 2.5f, 2.0f, 1.5f, 2f, 2f,2f};
             table.setWidths(columWidths);
             
             String[] headers = {"Product Name", "Unit Price", "Quantity", "Total Price", "Category", "Supplier", "Date"};
@@ -115,7 +115,12 @@ public class ReportDao {
                 headerCell.setBackgroundColor(BaseColor.BLACK.LIGHT_GRAY);
                 table.addCell(headerCell);
                 
-                Font dataFont= FontFactory.getFont(FontFactory.HELVETICA, 10);
+               
+                
+              
+            }
+            
+             Font dataFont= FontFactory.getFont(FontFactory.HELVETICA, 10);
                 for(Purchase p : purchases){
                 
                     table.addCell(new PdfPCell(new Phrase(p.getProductName(),dataFont)));
@@ -126,9 +131,6 @@ public class ReportDao {
                      table.addCell(new PdfPCell(new Phrase(p.getSupplier(),dataFont)));
                      table.addCell(new PdfPCell(new Phrase(p.getDate().toString(),dataFont)));
                 }
-                
-              
-            }
             
               //Add table to the document
                 document.add(table);
